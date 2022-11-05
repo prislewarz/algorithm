@@ -1,0 +1,15 @@
+def solution(order):
+    stacks = []
+    i = 1
+    n = 0
+    while i < len(order)+1:
+        stacks.append(i)
+        while stacks[-1] == order[idx]:
+            n += 1
+            stacks.pop()
+            if len(stacks) == 0:
+                break
+        i += 1
+
+
+    return n
