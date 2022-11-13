@@ -1,0 +1,32 @@
+import sys
+input = sys.stdin.readline
+
+n, limit = map(int, input().split())
+cake = [int(i) for i in input().split()]
+
+cakeTen = list(filter(lambda x: x % 10 == 0, cake))
+cakeNotTen = list(filter(lambda x: x % 10 != 0, cake))
+
+cnt = 0
+
+while limit > 0:
+    if cakeTen:
+        if cakeTen[0] // 10 - 1 > limit:
+            cnt += limit
+            limit = 0
+        else:
+            cnt += cakeTen[0] // 10
+            limit -= (cakeTen[0] // 10 - 1)
+        del cakeTen[0]
+
+    elif cakeNotTen:
+        if cakeNotTen[0] // 10 > limit:
+            cnt += limit
+            limit = 0
+        else:
+            cnt += cakeNotTen[0] // 10
+            limit -= cakeNotTen[0] // 10
+        del cakeNotTen[0]
+
+    else:
+        break
